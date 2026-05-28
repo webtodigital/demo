@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Boca's | Odontología Premium & Diseño de Sonrisa en Cali</title>
+    
+    <!-- Meta tags de SEO Local optimizados para Cali -->
+    <meta name="description" content="¿Buscas el mejor diseño de sonrisa o implantes dentales en Cali? Clínica Boca's en el sur de Cali (Barrio Capri). Agenda tu cita hoy por WhatsApp.">
+    <meta name="keywords" content="clinica bocas cali, diseño de sonrisa en cali, mejor odontólogo en cali, implantes dentales cali, ortodoncia cali sur, odontologia cerca de mi cali">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            500: '#14b8a6', // Mint Accent
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            navy: '#0f172a', // Deep corporate blue
+                            accent: '#0ea5e9' // Sky blue
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Custom styles & animations */
+        .glass-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(20, 184, 166, 0.2);
+        }
+        /* Custom scrollbar for premium touch */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- PANEL DE PRESENTACIÓN DE VENTAS (Solo para ti/el vendedor, se puede colapsar) -->
+    <div id="sales-pitch-bar" class="bg-brand-navy text-white text-xs py-3 px-4 sticky top-0 z-50 border-b border-slate-700 shadow-xl transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span class="font-bold tracking-wider text-emerald-400 uppercase">MODO PROPUESTA WEB ACTIVA:</span>
+                <span class="font-medium">Demostración interactiva para Clínica Boca's</span>
+            </div>
+            
+            <!-- Quick Client Customizer controls -->
+            <div class="flex flex-wrap items-center gap-3">
+                <div class="flex items-center gap-1 bg-slate-800/80 px-2.5 py-1 rounded-md border border-slate-700">
+                    <label for="input-phone" class="text-slate-400 font-semibold">WA Cliente:</label>
+                    <input type="text" id="input-phone" value="+573155507065" class="bg-transparent text-white font-bold w-28 focus:outline-none focus:text-brand-500 transition-colors">
+                </div>
+                <div class="flex items-center gap-1 bg-slate-800/80 px-2.5 py-1 rounded-md border border-slate-700">
+                    <label for="input-address" class="text-slate-400 font-semibold">Sede:</label>
+                    <input type="text" id="input-address" value="Carrera 72 # 10 Bis 163, Capri" class="bg-transparent text-white w-44 focus:outline-none focus:text-brand-500 transition-colors">
+                </div>
+                
+                <button onclick="applyLiveChanges()" class="bg-brand-500 hover:bg-brand-600 text-white font-bold px-3 py-1 rounded-md transition-all flex items-center gap-1 shadow-md hover:scale-105 active:scale-95">
+                    <i class="fa-solid fa-rotate"></i> Actualizar Demo
+                </button>
+                <button onclick="toggleResponsivePreview()" id="btn-device-toggle" class="bg-slate-700 hover:bg-slate-600 text-white font-semibold px-3 py-1 rounded-md transition-all flex items-center gap-1">
+                    <i class="fa-solid fa-mobile-screen"></i> Vista Móvil
+                </button>
+                <button onclick="copyHtmlToClipboard()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-3 py-1 rounded-md transition-all flex items-center gap-1">
+                    <i class="fa-solid fa-code"></i> Copiar HTML
+                </button>
+                <button onclick="togglePitchBar()" class="text-slate-400 hover:text-white ml-2">
+                    <i class="fa-solid fa-circle-xmark text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container wrapper to simulate responsive views easily inside the live demo -->
+    <div id="device-container" class="mx-auto transition-all duration-500 ease-in-out w-full max-w-full">
+        <div id="device-inner-frame" class="bg-white transition-all duration-500">
+
+            <!-- HEADER DE NAVEGACIÓN -->
+            <header class="glass-header sticky top-0 w-full z-40 transition-all border-b border-slate-100/80">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-center h-20">
+                        <!-- Logo & Brand name -->
+                        <div class="flex items-center gap-3">
+                            <div class="h-11 w-11 bg-gradient-to-tr from-brand-500 to-brand-accent rounded-xl flex items-center justify-center text-white shadow-lg shadow-brand-500/20">
+                                <i class="fa-solid fa-teeth-open text-xl"></i>
+                            </div>
+                            <div>
+                                <span class="text-xl font-extrabold tracking-tight text-slate-900 block leading-none">CLÍNICA BOCA'S</span>
+                                <span class="text-[10px] tracking-widest text-brand-600 font-bold block uppercase mt-0.5">Odontología de Alta Gama</span>
+                            </div>
+                        </div>
+
+                        <!-- Desktop Navigation -->
+                        <nav class="hidden md:flex space-x-8 items-center">
+                            <a href="#beneficios" class="text-sm font-semibold text-slate-600 hover:text-brand-600 transition-colors">¿Por qué nosotros?</a>
+                            <a href="#servicios" class="text-sm font-semibold text-slate-600 hover:text-brand-600 transition-colors">Tratamientos</a>
+                            <a href="#transformacion" class="text-sm font-semibold text-slate-600 hover:text-brand-600 transition-colors">Casos de Éxito</a>
+                            <a href="#testimonios" class="text-sm font-semibold text-slate-600 hover:text-brand-600 transition-colors">Reseñas</a>
+                            <a href="#contacto" class="text-sm font-semibold text-slate-600 hover:text-brand-600 transition-colors">Ubicación</a>
+                        </nav>
+
+                        <!-- Call to Action button & Mobile menu toggle -->
+                        <div class="flex items-center gap-4">
+                            <a href="tel:+573155507065" class="client-phone-link hidden sm:inline-flex items-center gap-2 text-slate-700 hover:text-brand-600 transition-colors text-sm font-semibold">
+                                <i class="fa-solid fa-phone text-brand-500"></i>
+                                <span class="client-phone-text">315 550 7065</span>
+                            </a>
+                            <a href="#agendar" class="hidden md:inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-brand-500 to-brand-accent rounded-full hover:shadow-lg hover:shadow-brand-500/30 hover:scale-[1.02] active:scale-95 transition-all">
+                                Agendar Cita
+                            </a>
+                            <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors focus:outline-none">
+                                <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Drawer (Hidden by default) -->
+                <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white/95 backdrop-blur-lg px-4 py-6 space-y-4 shadow-xl transition-all duration-300">
+                    <a href="#beneficios" onclick="toggleMobileMenu()" class="block text-base font-bold text-slate-700 hover:text-brand-600 py-2 border-b border-slate-50">¿Por qué nosotros?</a>
+                    <a href="#servicios" onclick="toggleMobileMenu()" class="block text-base font-bold text-slate-700 hover:text-brand-600 py-2 border-b border-slate-50">Tratamientos</a>
+                    <a href="#transformacion" onclick="toggleMobileMenu()" class="block text-base font-bold text-slate-700 hover:text-brand-600 py-2 border-b border-slate-50">Casos de Éxito</a>
+                    <a href="#testimonios" onclick="toggleMobileMenu()" class="block text-base font-bold text-slate-700 hover:text-brand-600 py-2 border-b border-slate-50">Reseñas</a>
+                    <a href="#contacto" onclick="toggleMobileMenu()" class="block text-base font-bold text-slate-700 hover:text-brand-600 py-2">Ubicación y Horarios</a>
+                    
+                    <div class="pt-4 flex flex-col gap-3">
+                        <a href="https://wa.me/573155507065?text=Hola,%20deseo%20agendar%20una%20valoración%20en%20Clínica%20Boca%27s" target="_blank" class="client-wa-link bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-center py-3 rounded-xl flex items-center justify-center gap-2 transition-all">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Chatear por WhatsApp
+                        </a>
+                        <a href="#agendar" onclick="toggleMobileMenu()" class="bg-brand-navy hover:bg-slate-900 text-white font-bold text-center py-3 rounded-xl transition-all">
+                            Agendar Cita en Línea
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- HERO SECTION -->
+            <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-16 bg-gradient-to-tr from-brand-50/50 via-white to-brand-100/20">
+                <!-- Background decorative elements -->
+                <div class="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-brand-100/30 to-transparent rounded-l-[150px] -z-10 hidden lg:block"></div>
+                <div class="absolute top-1/4 left-10 w-48 h-48 bg-teal-200/20 rounded-full blur-3xl -z-10"></div>
+                <div class="absolute bottom-1/4 right-20 w-72 h-72 bg-sky-200/20 rounded-full blur-3xl -z-10"></div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                    <div class="grid lg:grid-cols-12 gap-12 items-center">
+                        <!-- Left Hero Column -->
+                        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                            <!-- Local SEO Tag / Trust badge -->
+                            <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 rounded-full border border-emerald-100 text-emerald-700 text-xs font-bold uppercase tracking-wider mx-auto lg:mx-0">
+                                <i class="fa-solid fa-location-dot"></i> Odontología en el Sur de Cali (Barrio Capri)
+                            </div>
+                            
+                            <!-- Dynamic Hero Title -->
+                            <h1 id="hero-title" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1] text-glow">
+                                Recupera tu sonrisa perfecta con especialistas de confianza en <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-accent">Cali</span>
+                            </h1>
+                            
+                            <!-- Hero Subtitle -->
+                            <p class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 font-light">
+                                En <strong class="font-semibold text-slate-800">Clínica Boca’s</strong>, diseñamos sonrisas naturales, saludables y duraderas. Disfruta de la mejor atención personalizada con tecnología avanzada y profesionales que cuidan de ti.
+                            </p>
+                            
+                            <!-- Conversion CTAs -->
+                            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                                <a href="https://wa.me/573155507065?text=Hola%20Cl%C3%ADnica%20Boca%27s,%20vi%20su%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20agendar%20una%20valoraci%C3%B3n%20m%C3%A9dica." target="_blank" class="client-wa-link w-full sm:w-auto px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-center rounded-2xl flex items-center justify-center gap-3 shadow-xl shadow-emerald-500/20 hover:shadow-emerald-500/45 hover:scale-[1.03] transition-all text-base">
+                                    <i class="fa-brands fa-whatsapp text-xl"></i> Agendar por WhatsApp Gratis
+                                </a>
+                                <a href="#servicios" class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 text-slate-800 font-bold text-center rounded-2xl border border-slate-200 shadow-md hover:shadow-lg transition-all text-base">
+                                    Ver Tratamientos
+                                </a>
+                            </div>
+
+                            <!-- Trust indicators -->
+                            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-6 text-xs text-slate-500 font-medium">
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-star text-amber-500 text-sm"></i>
+                                    <span class="font-bold text-slate-700">⭐ 4.8 Estrellas</span> en Google Maps
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield-halved text-brand-500"></i>
+                                    <span>Garantía de Satisfacción</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-check text-brand-500"></i>
+                                    <span>Valoración Dental Inicial</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Hero Column (Visual Showcase / Dentist Model Overlay) -->
+                        <div class="lg:col-span-5 relative">
+                            <div class="relative mx-auto max-w-[360px] sm:max-w-[400px] lg:max-w-none">
+                                <!-- Modern decorative blobs behind -->
+                                <div class="absolute inset-0 bg-gradient-to-tr from-brand-500 to-brand-accent rounded-[40px] rotate-6 scale-95 opacity-20 blur-xl"></div>
+                                <div class="relative bg-gradient-to-br from-white to-brand-50/20 p-4 rounded-[32px] border border-slate-100 shadow-2xl overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80" alt="Consultorio Clínica Boca's" class="rounded-[24px] w-full h-[320px] object-cover hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/600x400/10b981/ffffff?text=Clinica+Bocas'">
+                                    
+                                    <!-- Floating Info Card 1 -->
+                                    <div class="absolute -bottom-2 -left-4 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 animate-bounce" style="animation-duration: 4s;">
+                                        <div class="p-2.5 bg-brand-50 text-brand-500 rounded-lg">
+                                            <i class="fa-solid fa-user-doctor text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-xs text-slate-500 block">Especialistas</span>
+                                            <span class="text-sm font-bold text-slate-900 block leading-tight">Odontólogos Certificados</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Floating Info Card 2 -->
+                                    <div class="absolute top-8 -right-4 bg-white p-3 rounded-xl shadow-lg border border-slate-100 flex items-center gap-2">
+                                        <div class="h-3 w-3 bg-emerald-500 rounded-full animate-pulse"></div>
+                                        <span class="text-[11px] font-extrabold text-slate-700 uppercase tracking-wider">Atención de Urgencias</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BENEFICIOS CLAVE -->
+            <section id="beneficios" class="py-20 bg-white border-t border-b border-slate-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                        <span class="text-xs font-extrabold text-brand-600 tracking-widest uppercase">Tu Sonrisa, Nuestro Mayor Éxito</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                            ¿Por qué elegir Clínica Boca’s en Cali?
+                        </h2>
+                        <p class="text-base text-slate-600">
+                            Nos diferenciamos de los consultorios tradicionales brindando una experiencia libre de estrés, tratamientos sin dolor y resultados visibles desde las primeras citas.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- Benefit 1 -->
+                        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-brand-500/30 hover:bg-white hover:shadow-xl transition-all duration-300 group">
+                            <div class="h-12 w-12 bg-teal-500/10 text-brand-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-500 group-hover:text-white transition-colors duration-300">
+                                <i class="fa-solid fa-heart-pulse text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-3">Atención Sin Dolor y Sin Estrés</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Utilizamos protocolos modernos de sedación consciente y técnicas amigables para que te relajes completamente durante tu consulta. ¡Olvídate de la ansiedad dental!
+                            </p>
+                        </div>
+
+                        <!-- Benefit 2 -->
+                        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-brand-500/30 hover:bg-white hover:shadow-xl transition-all duration-300 group">
+                            <div class="h-12 w-12 bg-sky-500/10 text-brand-accent rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-accent group-hover:text-white transition-colors duration-300">
+                                <i class="fa-solid fa-circle-check text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-3">Materiales de Alta Calidad</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                No escatimamos en calidad. Usamos resinas, cerámicas e implantes de grado premium importados, que garantizan una durabilidad extrema y una apariencia natural.
+                            </p>
+                        </div>
+
+                        <!-- Benefit 3 -->
+                        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-brand-500/30 hover:bg-white hover:shadow-xl transition-all duration-300 group">
+                            <div class="h-12 w-12 bg-emerald-500/10 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
+                                <i class="fa-solid fa-user-clock text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-3">Horarios Flexibles & Citas Puntuales</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Valoramos tu tiempo. Ofrecemos citas altamente puntuales, con facilidad para agendar de urgencia el mismo día o en horarios adaptados a tu vida laboral.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN INTERACTIVA DE ANTES / DESPUÉS (Altamente interactiva para conversión) -->
+            <section id="transformacion" class="py-20 bg-gradient-to-br from-slate-900 to-brand-navy text-white relative overflow-hidden">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-brand-600/10 via-transparent to-transparent"></div>
+                
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid lg:grid-cols-12 gap-12 items-center">
+                        <!-- Left Info Panel -->
+                        <div class="lg:col-span-5 space-y-6 text-center lg:text-left">
+                            <span class="text-xs font-extrabold text-brand-500 tracking-widest uppercase">Resultados Reales</span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                                Transforma tu sonrisa en un solo lugar
+                            </h2>
+                            <p class="text-slate-300 leading-relaxed font-light">
+                                Desliza el control interactivo de la derecha para observar el cambio de un Diseño de Sonrisa integral en nuestra clínica. Pasamos de coloraciones amarillas y desalineación a un aspecto radiante, armónico y natural.
+                            </p>
+                            
+                            <div class="space-y-3 pt-2 text-sm text-slate-300">
+                                <div class="flex items-center justify-center lg:justify-start gap-3">
+                                    <span class="h-6 w-6 rounded-full bg-brand-500/20 text-brand-500 flex items-center justify-center text-xs"><i class="fa-solid fa-check"></i></span>
+                                    <span>Ortodoncia de alta precisión</span>
+                                </div>
+                                <div class="flex items-center justify-center lg:justify-start gap-3">
+                                    <span class="h-6 w-6 rounded-full bg-brand-500/20 text-brand-500 flex items-center justify-center text-xs"><i class="fa-solid fa-check"></i></span>
+                                    <span>Blanqueamiento láser sin sensibilidad</span>
+                                </div>
+                                <div class="flex items-center justify-center lg:justify-start gap-3">
+                                    <span class="h-6 w-6 rounded-full bg-brand-500/20 text-brand-500 flex items-center justify-center text-xs"><i class="fa-solid fa-check"></i></span>
+                                    <span>Diseño de sonrisa de resina y cerámica</span>
+                                </div>
+                            </div>
+
+                            <div class="pt-6">
+                                <a href="https://wa.me/573155507065?text=Hola%21%20Quiero%20saber%20sobre%20el%20dise%C3%B1o%20de%20sonrisa%20y%20precios%20en%20Cali." target="_blank" class="client-wa-link inline-flex items-center gap-3 bg-brand-500 hover:bg-brand-600 text-white font-extrabold px-8 py-3.5 rounded-2xl shadow-lg transition-transform hover:scale-105 active:scale-95">
+                                    <i class="fa-brands fa-whatsapp"></i> Cotizar mi tratamiento gratis
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Right Interactive Slider -->
+                        <div class="lg:col-span-7 flex flex-col items-center">
+                            <!-- Interactive Slider Container -->
+                            <div class="relative w-full max-w-[500px] h-[320px] rounded-3xl overflow-hidden shadow-2xl border border-slate-700/50 select-none">
+                                <!-- BEFORE IMAGE (Bottom layer) -->
+                                <div class="absolute inset-0">
+                                    <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?auto=format&fit=crop&w=600&q=80" alt="Antes de tratamiento dental" class="w-full h-full object-cover filter grayscale opacity-90">
+                                    <div class="absolute top-4 left-4 bg-red-600/80 text-white text-[10px] uppercase font-bold px-3 py-1 rounded-full backdrop-blur-md">Antes</div>
+                                </div>
+                                
+                                <!-- AFTER IMAGE (Top slider layer) -->
+                                <div id="after-img-wrap" class="absolute inset-y-0 left-0 w-1/2 overflow-hidden border-r-2 border-brand-500">
+                                    <div class="absolute inset-0 w-[500px] h-[320px]">
+                                        <!-- Happy Perfect Smile Image mockup -->
+                                        <img src="https://images.unsplash.com/photo-1579684389782-64d84b5e901a?auto=format&fit=crop&w=600&q=80" alt="Después de tratamiento dental" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="absolute top-4 left-4 bg-emerald-500/80 text-white text-[10px] uppercase font-bold px-3 py-1 rounded-full backdrop-blur-md">Después de Clínica Boca's</div>
+                                </div>
+
+                                <!-- Slider Input Trigger overlaying the container -->
+                                <input type="range" min="0" max="100" value="50" id="smile-slider" class="absolute inset-0 opacity-0 w-full h-full cursor-ew-resize z-30" oninput="updateSmileSlider(this.value)">
+                                
+                                <!-- Custom visually appealing Slider Bar handle icon -->
+                                <div id="slider-handle" class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 w-10 h-10 bg-white text-brand-navy border-4 border-brand-500 rounded-full flex items-center justify-center shadow-2xl pointer-events-none z-20 transition-all duration-100">
+                                    <i class="fa-solid fa-left-right text-xs"></i>
+                                </div>
+                            </div>
+                            <span class="text-xs text-slate-400 mt-4"><i class="fa-solid fa-arrows-left-right"></i> Arrastra la barra para ver el cambio instantáneo</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SERVICIOS / TRATAMIENTOS (Optimizado para SEO Local) -->
+            <section id="servicios" class="py-20 bg-slate-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                        <span class="text-xs font-extrabold text-brand-accent tracking-widest uppercase">Especialistas a tu Servicio</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                            Servicios de Odontología Integral en Cali
+                        </h2>
+                        <p class="text-base text-slate-600">
+                            Equipados con tecnología de punta para entregarte resultados duraderos y hermosos en el menor tiempo posible.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Service 1 -->
+                        <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+                            <div>
+                                <div class="h-14 w-14 rounded-2xl bg-gradient-to-tr from-brand-500 to-teal-400 text-white flex items-center justify-center mb-6 shadow-md shadow-brand-500/10">
+                                    <i class="fa-solid fa-teeth text-2xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-2">Diseño de Sonrisa</h3>
+                                <p class="text-xs font-bold text-brand-600 mb-3 bg-brand-50 inline-block px-2.5 py-1 rounded-md">Diseño de Sonrisa en Cali</p>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                    Armonizamos la forma, tamaño y color de tus dientes mediante carillas de resina de alta gama o cerámica ultra-resistente.
+                                </p>
+                            </div>
+                            <a href="https://wa.me/573155507065?text=Hola,%20solicito%20información%20sobre%20Diseño%20de%20Sonrisa%20en%20Cali." target="_blank" class="client-wa-link block text-center py-2.5 text-xs font-bold text-brand-600 bg-brand-50 rounded-xl hover:bg-brand-500 hover:text-white transition-all">
+                                Consultar Precio
+                            </a>
+                        </div>
+
+                        <!-- Service 2 -->
+                        <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+                            <div>
+                                <div class="h-14 w-14 rounded-2xl bg-gradient-to-tr from-brand-accent to-sky-400 text-white flex items-center justify-center mb-6 shadow-md shadow-sky-500/10">
+                                    <i class="fa-solid fa-align-center text-2xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-2">Ortodoncia Avanzada</h3>
+                                <p class="text-xs font-bold text-slate-600 mb-3 bg-slate-100 inline-block px-2.5 py-1 rounded-md">Mejor Ortodoncia cerca de mí</p>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                    Corrige la alineación de tus dientes de forma rápida. Brackets metálicos convencionales, estéticos e invisibles (Invisalign).
+                                </p>
+                            </div>
+                            <a href="https://wa.me/573155507065?text=Hola,%20solicito%20información%20sobre%20Ortodoncia%20en%20Cali." target="_blank" class="client-wa-link block text-center py-2.5 text-xs font-bold text-brand-600 bg-brand-50 rounded-xl hover:bg-brand-500 hover:text-white transition-all">
+                                Consultar Precio
+                            </a>
+                        </div>
+
+                        <!-- Service 3 -->
+                        <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+                            <div>
+                                <div class="h-14 w-14 rounded-2xl bg-gradient-to-tr from-indigo-500 to-brand-accent text-white flex items-center justify-center mb-6 shadow-md shadow-indigo-500/10">
+                                    <i class="fa-solid fa-screwdriver text-2xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-2">Implantes Dentales</h3>
+                                <p class="text-xs font-bold text-brand-600 mb-3 bg-brand-50 inline-block px-2.5 py-1 rounded-md">Implantes Dentales en el Sur de Cali</p>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                    Recupera tus piezas perdidas de manera definitiva. Usamos titanio médico biocompatible de máxima fijación y estética natural.
+                                </p>
+                            </div>
+                            <a href="https://wa.me/573155507065?text=Hola,%20solicito%20información%20sobre%20Implantes%20Dentales." target="_blank" class="client-wa-link block text-center py-2.5 text-xs font-bold text-brand-600 bg-brand-50 rounded-xl hover:bg-brand-500 hover:text-white transition-all">
+                                Consultar Precio
+                            </a>
+                        </div>
+
+                        <!-- Service 4 -->
+                        <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+                            <div>
+                                <div class="h-14 w-14 rounded-2xl bg-gradient-to-tr from-emerald-500 to-brand-500 text-white flex items-center justify-center mb-6 shadow-md shadow-emerald-500/10">
+                                    <i class="fa-solid fa-wand-magic-sparkles text-2xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-2">Blanqueamiento</h3>
+                                <p class="text-xs font-bold text-slate-600 mb-3 bg-slate-100 inline-block px-2.5 py-1 rounded-md">Blanqueamiento Dental Cali</p>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                    Aclara hasta 4 tonos en una sola sesión de 45 minutos gracias a nuestra tecnología láser libre de molestia o sensibilidad.
+                                </p>
+                            </div>
+                            <a href="https://wa.me/573155507065?text=Hola,%20solicito%20información%20sobre%20Blanqueamiento%20Dental." target="_blank" class="client-wa-link block text-center py-2.5 text-xs font-bold text-brand-600 bg-brand-50 rounded-xl hover:bg-brand-500 hover:text-white transition-all">
+                                Consultar Precio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AGENDAMIENTO / MOTOR DE RESERVA (Generador de conversiones de ventas a WA) -->
+            <section id="agendar" class="py-20 bg-white relative">
+                <div class="absolute inset-0 bg-gradient-to-b from-brand-50/20 to-transparent -z-10"></div>
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="bg-white border border-slate-100 rounded-[32px] p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                        
+                        <!-- Premium Background Blur Elements -->
+                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-500/10 rounded-full blur-2xl"></div>
+                        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-accent/10 rounded-full blur-2xl"></div>
+
+                        <div class="text-center max-w-2xl mx-auto space-y-3 mb-8">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-50 rounded-full text-brand-600 text-xs font-extrabold tracking-wider uppercase">
+                                <i class="fa-solid fa-clock"></i> Reserva tu Cita en Segundos
+                            </span>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Agenda tu Valoración Inicial hoy mismo</h2>
+                            <p class="text-slate-500 text-sm">
+                                Completa el siguiente formulario y nuestro motor de reservas preparará automáticamente tu mensaje con el especialista para confirmarlo en WhatsApp.
+                            </p>
+                        </div>
+
+                        <!-- Main booking form -->
+                        <form onsubmit="generateAppointmentWhatsApp(event)" class="grid sm:grid-cols-2 gap-6 relative z-10">
+                            <!-- Name -->
+                            <div class="space-y-1">
+                                <label for="book-name" class="text-xs font-bold text-slate-700 block">Tu Nombre Completo *</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                                        <i class="fa-regular fa-user"></i>
+                                    </span>
+                                    <input type="text" id="book-name" required placeholder="Ej. Carlos Mendoza" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-500 focus:bg-white text-slate-800 text-sm py-3 pl-11 pr-4 rounded-xl focus:outline-none transition-all">
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="space-y-1">
+                                <label for="book-phone" class="text-xs font-bold text-slate-700 block">Número de Contacto *</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                                        <i class="fa-solid fa-mobile-screen"></i>
+                                    </span>
+                                    <input type="tel" id="book-phone" required placeholder="Ej. 315 550 7065" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-500 focus:bg-white text-slate-800 text-sm py-3 pl-11 pr-4 rounded-xl focus:outline-none transition-all">
+                                </div>
+                            </div>
+
+                            <!-- Treatment Selected -->
+                            <div class="space-y-1">
+                                <label for="book-service" class="text-xs font-bold text-slate-700 block">Tratamiento de Interés *</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                                        <i class="fa-solid fa-tooth"></i>
+                                    </span>
+                                    <select id="book-service" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-500 focus:bg-white text-slate-800 text-sm py-3 pl-11 pr-4 rounded-xl focus:outline-none transition-all appearance-none">
+                                        <option value="Diseño de Sonrisa">Diseño de Sonrisa</option>
+                                        <option value="Ortodoncia">Ortodoncia (Brackets)</option>
+                                        <option value="Implantes Dentales">Implantes Dentales</option>
+                                        <option value="Blanqueamiento Láser">Blanqueamiento Dental</option>
+                                        <option value="Odontología General / Limpieza">Odontología General / Limpieza</option>
+                                        <option value="Otro">Otro Tratamiento / Consulta General</option>
+                                    </select>
+                                    <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-400 pointer-events-none">
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Date Choice -->
+                            <div class="space-y-1">
+                                <label for="book-date" class="text-xs font-bold text-slate-700 block">Día Preferido de Atención</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                    </span>
+                                    <input type="date" id="book-date" class="w-full bg-slate-50 border border-slate-200 focus:border-brand-500 focus:bg-white text-slate-800 text-sm py-3 pl-11 pr-4 rounded-xl focus:outline-none transition-all">
+                                </div>
+                            </div>
+
+                            <!-- Submit button (Large conversion trigger) -->
+                            <div class="sm:col-span-2 pt-2">
+                                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold py-4 rounded-xl flex items-center justify-center gap-2 shadow-xl shadow-emerald-500/10 hover:scale-[1.01] hover:shadow-emerald-500/25 active:scale-95 transition-all text-base cursor-pointer">
+                                    <i class="fa-brands fa-whatsapp text-lg"></i> Reservar y Enviar Cita por WhatsApp
+                                </button>
+                                <div class="flex items-center justify-center gap-2 text-slate-400 text-[11px] mt-3">
+                                    <i class="fa-solid fa-lock text-emerald-500"></i>
+                                    <span>Tus datos están protegidos y se envían de forma directa de extremo a extremo.</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TESTIMONIOS (Estilo Google Maps Real) -->
+            <section id="testimonios" class="py-20 bg-slate-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                        <span class="text-xs font-extrabold text-brand-600 tracking-widest uppercase">Opiniones de Pacientes</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                            Lo que dicen nuestros pacientes en Cali
+                        </h2>
+                        <div class="flex items-center justify-center gap-2">
+                            <span class="font-bold text-slate-900">4.8 / 5.0</span>
+                            <div class="flex text-amber-500 text-sm">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                            <span class="text-slate-500 text-xs">(Opiniones de Google Maps)</span>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- Review 1 -->
+                        <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm relative flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-6">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-sm">MH</div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-slate-900">Marcela Holguín</h4>
+                                            <span class="text-[10px] text-slate-400">Hace 2 meses</span>
+                                        </div>
+                                    </div>
+                                    <i class="fa-brands fa-google text-slate-300 text-lg"></i>
+                                </div>
+                                <div class="flex text-amber-500 text-xs mb-3">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-sm text-slate-600 leading-relaxed italic">
+                                    "Excelente atención en el consultorio del sur de Cali. Me realicé mi blanqueamiento dental y de verdad los resultados fueron espectaculares, no sentí absolutamente nada de sensibilidad. Lo recomiendo a ojo cerrado."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Review 2 -->
+                        <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm relative flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-6">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-full bg-brand-100 text-brand-accent flex items-center justify-center font-bold text-sm">AG</div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-slate-900">Andrés Gutiérrez</h4>
+                                            <span class="text-[10px] text-slate-400">Hace 3 semanas</span>
+                                        </div>
+                                    </div>
+                                    <i class="fa-brands fa-google text-slate-300 text-lg"></i>
+                                </div>
+                                <div class="flex text-amber-500 text-xs mb-3">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-sm text-slate-600 leading-relaxed italic">
+                                    "La atención de la Dra es increíble. Fui por una ortodoncia porque mis dientes estaban muy amontonados. Todo ha sido muy rápido, indoloro y con presupuestos muy transparentes. Cumplen las citas súper puntuales."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Review 3 -->
+                        <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm relative flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-6">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-full bg-brand-100 text-emerald-600 flex items-center justify-center font-bold text-sm">SP</div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-slate-900">Sandra Patricia</h4>
+                                            <span class="text-[10px] text-slate-400">Hace 1 mes</span>
+                                        </div>
+                                    </div>
+                                    <i class="fa-brands fa-google text-slate-300 text-lg"></i>
+                                </div>
+                                <div class="flex text-amber-500 text-xs mb-3">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-sm text-slate-600 leading-relaxed italic">
+                                    "La mejor clínica en el barrio Capri. He llevado a mis hijos para limpieza y su experiencia de odontopediatría fue súper linda. Muy profesionales, pulcros y sobre todo muy amables en cada llamada o cita."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACTO / UBICACIÓN / MAPA -->
+            <section id="contacto" class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid lg:grid-cols-12 gap-12 items-center">
+                        
+                        <!-- Left Info Card -->
+                        <div class="lg:col-span-5 space-y-6">
+                            <span class="text-xs font-extrabold text-brand-600 tracking-widest uppercase">¿Cómo llegar?</span>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Te esperamos en la Clínica</h2>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Estamos ubicados estratégicamente en el sur de la ciudad de Cali, en un sector residencial muy seguro con parqueaderos cómodos y accesos fáciles.
+                            </p>
+
+                            <div class="space-y-4 pt-2">
+                                <!-- Address -->
+                                <div class="flex items-start gap-3">
+                                    <div class="h-10 w-10 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-map-location-dot"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-slate-900">Dirección de la Sede</h4>
+                                        <p id="client-address-text" class="text-slate-500 text-xs">CARRERA 72 # 10 BIS 163 SEGUNDO PISO Barrio/Capri, Cali, Colombia</p>
+                                    </div>
+                                </div>
+
+                                <!-- Hours -->
+                                <div class="flex items-start gap-3">
+                                    <div class="h-10 w-10 rounded-xl bg-brand-50 text-brand-accent flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-regular fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-slate-900">Horario de Atención</h4>
+                                        <p class="text-slate-500 text-xs">Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                                        <p class="text-slate-500 text-xs">Sábados: 8:00 AM - 1:00 PM</p>
+                                        <p class="text-brand-600 text-xs font-bold mt-1">Urgencias dentales disponibles por WhatsApp</p>
+                                    </div>
+                                </div>
+
+                                <!-- Direct Contacts -->
+                                <div class="flex items-start gap-3">
+                                    <div class="h-10 w-10 rounded-xl bg-brand-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-headset"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-slate-900">Contáctanos Directo</h4>
+                                        <a href="tel:+573155507065" class="client-phone-link block text-slate-500 text-xs hover:text-brand-600"><span class="client-phone-text">315 550 7065</span></a>
+                                        <span class="text-slate-500 text-xs">clinica.bocas.cali@gmail.com</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Maps Integration Frame -->
+                        <div class="lg:col-span-7">
+                            <div class="bg-slate-100 rounded-3xl overflow-hidden shadow-xl border border-slate-200/60 h-[380px] w-full relative group">
+                                <!-- Interactive Premium Google Map Custom Mock / Embed -->
+                                <iframe 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.9157291771147!2d-76.54419609999999!3d3.3926327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e30a13b3c85472b%3A0xd1065f2f012a8279!2sCl%C3%ADnica%20Boca&#39;s!5e0!3m2!1ses-419!2sco!4v1700000000000!5m2!1ses-419!2sco" 
+                                    width="100%" 
+                                    height="100%" 
+                                    style="border:0;" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    class="w-full h-full grayscale hover:grayscale-0 transition-all duration-500">
+                                </iframe>
+                                <div class="absolute bottom-4 right-4 bg-white px-4 py-2.5 rounded-xl shadow-lg border border-slate-100 flex items-center gap-2 pointer-events-none group-hover:opacity-0 transition-opacity">
+                                    <i class="fa-solid fa-location-crosshairs text-brand-500"></i>
+                                    <span class="text-xs font-bold text-slate-800">Ubicado en el Sur de Cali</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="bg-brand-navy text-slate-400 py-16 border-t border-slate-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-4 gap-8 mb-12">
+                        <!-- Branding Col -->
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="h-9 w-9 bg-brand-500 text-white rounded-lg flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-teeth-open"></i>
+                                </div>
+                                <span class="text-lg font-extrabold text-white">CLÍNICA BOCA'S</span>
+                            </div>
+                            <p class="text-xs leading-relaxed text-slate-400">
+                                Tu sonrisa es tu carta de presentación. En Clínica Boca's nos dedicamos al diseño de sonrisas naturales y saludables con odontólogos altamente capacitados en el Sur de Cali.
+                            </p>
+                        </div>
+
+                        <!-- Treatment Quicklinks -->
+                        <div class="space-y-3">
+                            <h4 class="text-white text-xs font-bold uppercase tracking-wider">Tratamientos</h4>
+                            <ul class="space-y-2 text-xs">
+                                <li><a href="#servicios" class="hover:text-brand-500 transition-colors">Diseño de Sonrisa en Cali</a></li>
+                                <li><a href="#servicios" class="hover:text-brand-500 transition-colors">Ortodoncia Capri Cali</a></li>
+                                <li><a href="#servicios" class="hover:text-brand-500 transition-colors">Implantes Dentales</a></li>
+                                <li><a href="#servicios" class="hover:text-brand-500 transition-colors">Urgencias Odontológicas</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Company / Contact -->
+                        <div class="space-y-3">
+                            <h4 class="text-white text-xs font-bold uppercase tracking-wider">Contacto Directo</h4>
+                            <ul class="space-y-2 text-xs">
+                                <li>Sede: <span id="footer-address-text">Carrera 72 # 10 Bis 163, Capri</span></li>
+                                <li>Teléfono: <span class="client-phone-text">315 550 7065</span></li>
+                                <li>Cali, Valle del Cauca, Colombia</li>
+                            </ul>
+                        </div>
+
+                        <!-- Legal / Trust Elements -->
+                        <div class="space-y-3">
+                            <h4 class="text-white text-xs font-bold uppercase tracking-wider">Certificaciones</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[9px] font-bold uppercase tracking-wider bg-slate-800 text-emerald-400 px-2 py-1 rounded">Habilitación Seccional de Salud</span>
+                                <span class="text-[9px] font-bold uppercase tracking-wider bg-slate-800 text-brand-accent px-2 py-1 rounded">Odontólogos Colegiados</span>
+                            </div>
+                            <div class="flex gap-4 pt-2 text-base">
+                                <a href="https://instagram.com/clinica_bocas" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-google"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fine print -->
+                    <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-slate-500 text-xs text-center sm:text-left gap-4">
+                        <p>&copy; 2026 Clínica Boca's Cali. Todos los derechos reservados.</p>
+                        <p>Diseño y Desarrollo por Propuestas Digitales Premium. Optimizado para SEO Local & Conversión Móvil.</p>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- FLOATING DIRECT CHAT WHATSAPP BUTTON (Persistent conversion) -->
+            <a href="https://wa.me/573155507065?text=Hola%2C%20estoy%20viendo%20la%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20hacer%20una%20consulta%20r%C3%A1pida." target="_blank" class="client-wa-link fixed bottom-6 right-6 h-14 w-14 bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-2xl hover:bg-emerald-600 hover:scale-110 active:scale-95 transition-all z-35 group" aria-label="Escríbenos por WhatsApp">
+                <span class="absolute -left-36 bg-slate-900 text-white text-[11px] font-bold py-1 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-md">¿Preguntas? Chatea con nosotros</span>
+                <i class="fa-brands fa-whatsapp text-3xl"></i>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC FOR THE LIVE PRESENTATION FRAME & BUSINESS CUSTOMIZER -->
+    <script>
+        // Custom interactive state
+        let isPitchCollapsed = false;
+        let isMobilePreview = false;
+
+        // Toggle the entire upper presentation header tool
+        function togglePitchBar() {
+            const bar = document.getElementById('sales-pitch-bar');
+            bar.classList.add('translate-y-[-100%]', 'opacity-0');
+            setTimeout(() => {
+                bar.style.display = 'none';
+            }, 300);
+        }
+
+        // Toggle simulation of a mobile interface screen inside the browser frame
+        function toggleResponsivePreview() {
+            const container = document.getElementById('device-container');
+            const innerFrame = document.getElementById('device-inner-frame');
+            const toggleBtn = document.getElementById('btn-device-toggle');
+            
+            isMobilePreview = !isMobilePreview;
+            
+            if (isMobilePreview) {
+                container.classList.remove('max-w-full');
+                container.classList.add('max-w-[420px]', 'my-8', 'shadow-2xl', 'border-8', 'border-slate-800', 'rounded-[40px]', 'overflow-hidden');
+                innerFrame.classList.add('h-[840px]', 'overflow-y-auto');
+                toggleBtn.innerHTML = '<i class="fa-solid fa-desktop"></i> Vista Escritorio';
+            } else {
+                container.classList.remove('max-w-[420px]', 'my-8', 'shadow-2xl', 'border-8', 'border-slate-800', 'rounded-[40px]', 'overflow-hidden');
+                container.classList.add('max-w-full');
+                innerFrame.classList.remove('h-[840px]', 'overflow-y-auto');
+                toggleBtn.innerHTML = '<i class="fa-solid fa-mobile-screen"></i> Vista Móvil';
+            }
+        }
+
+        // Apply dynamically updated fields immediately across all elements in the DOM
+        function applyLiveChanges() {
+            const phone = document.getElementById('input-phone').value.trim();
+            const address = document.getElementById('input-address').value.trim();
+            
+            // Clean phone with no spaces or symbols for wa.me link matching
+            const cleanPhone = phone.replace(/[^\d+]/g, '');
+
+            // Update all phone numbers text
+            const phoneTextElements = document.querySelectorAll('.client-phone-text');
+            phoneTextElements.forEach(el => el.textContent = phone);
+
+            // Update all standard direct phone dial anchors
+            const phoneLinkElements = document.querySelectorAll('.client-phone-link');
+            phoneLinkElements.forEach(el => el.href = `tel:${cleanPhone}`);
+
+            // Update all dynamically generated WhatsApp links
+            const waLinks = document.querySelectorAll('.client-wa-link');
+            waLinks.forEach(link => {
+                // Keep the same query params or preset them
+                const url = new URL(link.href);
+                const text = url.searchParams.get('text') || 'Hola!';
+                link.href = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(text)}`;
+            });
+
+            // Update addresses references
+            document.getElementById('client-address-text').textContent = address + ', Cali, Colombia';
+            document.getElementById('footer-address-text').textContent = address;
+
+            // Flash visual confirmation cue on updated elements
+            alertMessage('¡Datos de la propuesta actualizados con éxito en vivo!');
+        }
+
+        // Custom unobtrusive notification box
+        function alertMessage(msg) {
+            const alertBox = document.createElement('div');
+            alertBox.className = 'fixed top-24 left-1/2 -translate-x-1/2 bg-slate-900 text-white font-bold text-xs py-3 px-6 rounded-full z-50 shadow-2xl flex items-center gap-2 border border-brand-500 animate-bounce';
+            alertBox.innerHTML = `<i class="fa-solid fa-circle-check text-brand-500"></i> ${msg}`;
+            document.body.appendChild(alertBox);
+            setTimeout(() => {
+                alertBox.remove();
+            }, 3000);
+        }
+
+        // Mobile dropdown toggles
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.className = 'fa-solid fa-xmark text-xl';
+            } else {
+                menu.classList.add('hidden');
+                icon.className = 'fa-solid fa-bars text-xl';
+            }
+        }
+
+        // Update the before/after smile slider visually using css clip-path
+        function updateSmileSlider(value) {
+            const afterWrap = document.getElementById('after-img-wrap');
+            const handle = document.getElementById('slider-handle');
+            
+            // Apply percentage width and center position
+            afterWrap.style.width = `${value}%`;
+            handle.style.left = `${value}%`;
+        }
+
+        // High Converting Form submission engine: translates fields to direct professional WhatsApp string
+        function generateAppointmentWhatsApp(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('book-name').value;
+            const phone = document.getElementById('book-phone').value;
+            const service = document.getElementById('book-service').value;
+            const date = document.getElementById('book-date').value || 'Sin definir';
+
+            // Gather dynamically current target customer number
+            const targetClientPhone = document.getElementById('input-phone').value.replace(/[^\d+]/g, '');
+
+            // Format message neatly
+            const baseText = `Hola Clínica Boca's, deseo agendar una valoración médica:\n\n👤 *Nombre:* ${name}\n📞 *Teléfono:* ${phone}\n🦷 *Tratamiento:* ${service}\n📅 *Fecha Preferida:* ${date}\n\n_Enviado desde su página web oficial._`;
+            
+            // Build the URL & execute redirect
+            const waUrl = `https://wa.me/${targetClientPhone}?text=${encodeURIComponent(baseText)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        // Quick Clipboard copy for presentation file reuse
+        function copyHtmlToClipboard() {
+            const pageMarkup = document.documentElement.outerHTML;
+            
+            // Creating temporary node for standard copy action (iframe compatibility)
+            const el = document.createElement('textarea');
+            el.value = pageMarkup;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            alertMessage('¡Código de plantilla copiado al portapapeles! Listo para exportar.');
+        }
+
+        // Auto initialization
+        window.onload = function() {
+            // Apply defaults once loaded
+            applyLiveChanges();
+        };
+    </script>
+</body>
+</html>
